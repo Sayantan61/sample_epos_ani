@@ -52,7 +52,7 @@ public class Plant_Ops
            // org.hibernate.Transaction tx=session.beginTransaction();
             tx=session.beginTransaction();
             hibernate.pojo.TblPlant plant= new hibernate.pojo.TblPlant();  //(new BigDecimal(3), "babu", "kochu");
-           plant.setIPlantId(new BigDecimal(id));
+           //plant.setIPlantId(new BigDecimal(id));
             plant.setTPlantName(name);
             plant.setTPlantOwner(owner);
             

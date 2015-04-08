@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 2, 2015 12:31:44 PM by Hibernate Tools 4.3.1
+// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -37,10 +37,8 @@ public class TblDriver  implements java.io.Serializable {
     }
 
 	
-    public TblDriver(BigDecimal IDriverId, TblPlant tblPlant, TblTransporter tblTransporter, String TLicenceNo) {
+    public TblDriver(BigDecimal IDriverId, String TLicenceNo) {
         this.IDriverId = IDriverId;
-        this.tblPlant = tblPlant;
-        this.tblTransporter = tblTransporter;
         this.TLicenceNo = TLicenceNo;
     }
     public TblDriver(BigDecimal IDriverId, TblPlant tblPlant, TblTransporter tblTransporter, String TDriverName, String TDriverAddr1, String TDriverAddr2, String TDriverCity, String TStateId, String IDriverPin, String TCountryId, String TDriverEmailId, String TLicenceNo, Boolean BIsActive, String TCreatedBy, Date dtCreated, String TModifiedBy, Date dtModified, Boolean BIsDeleted, Set tblMappings) {

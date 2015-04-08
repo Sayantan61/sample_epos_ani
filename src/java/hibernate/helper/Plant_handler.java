@@ -10,37 +10,32 @@ import java.math.BigDecimal;
 import org.hibernate.Session;
 import javax.persistence.Query;
 import org.hibernate.Transaction;
+import java.util.Iterator;
+import java.util.List;
 
 /*
-    Handles operations of table objects;
-  public void insert_into_table(args)                       --inserts data into table
-  public void delete_from_table(args)                       --deletes data from table
-  public void update_in_table(args)                         --updates data in table 
+    Handles operations of table objects; Returns "Success" / "Failure" accordingly
+  public String insert_into_table(args)                       --inserts data into table 
+  public String delete_from_table(args)                       --deletes data from table
+  public String update_in_table(args)                         --updates data in table
+ public List run_query(String HQl_Query,int n);                     --runs hql query and returns the list pointing to database objects
   
-public  final static boolean FLAG=true;     //true indicates not to replace solid values with null values in update query
 
-  public void insert_into_table()                       --inserts test data into table
-  public void delete_from_table()                       --deletes test data from table
-  public void update_in_table()                         --updates test data in table
-*/
 
-public class Plant_handler implements helper{
+  */
+
+
+public class Plant_handler extends sample_helper {
     private Session session;
      //public  final static boolean FLAG=true;          --inherited from interface
-    
-    public Plant_handler(){}
 
-    @Override
-    public void insert_into_table()
-    {
-        insert_into_table(20,"ani","aniruddha" );         
-//throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    public Plant_handler() {
+    } 
+  
     
-    
-    public void insert_into_table(int id,String name,String owner)
+    public String insert_into_table(String name,String owner)
   {
-        
+        boolean error_flag=false;
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
     
         org.hibernate.Transaction tx = null;
@@ -49,7 +44,7 @@ public class Plant_handler implements helper{
            // org.hibernate.Transaction tx=session.beginTransaction();
             tx=session.beginTransaction();
             hibernate.pojo.TblPlant plant= new hibernate.pojo.TblPlant();  //(new BigDecimal(3), "babu", "kochu");
-           plant.setIPlantId(new BigDecimal(id));
+          // plant.setIPlantId(new BigDecimal(id));
             plant.setTPlantName(name);
             plant.setTPlantOwner(owner);
             
@@ -58,7 +53,8 @@ public class Plant_handler implements helper{
         }
         catch(Exception e)
         {
-             if (tx != null) {
+            error_flag=true; 
+            if (tx != null) {
                 tx.rollback();
             e.printStackTrace();
         }
@@ -66,28 +62,25 @@ public class Plant_handler implements helper{
         finally
         {
             session.close();
-        }
-        
+           if(error_flag==false) return "Success";
+           else         return "Failure";
+        }   
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
     
-
-     @Override
-    public void delete_from_table() {
+    public String delete_from_table(int id) 
+   {
         
-         delete_from_table(5);
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-    
-    public void delete_from_table(int id) {
     session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
-    
+    boolean error_flag=false;
         org.hibernate.Transaction tx = null;
         try
         {
            // org.hibernate.Transaction tx=session.beginTransaction();
+            Plant_handler ph=new Plant_handler();
+       TblPlant pl=ph.get_tuple(id);
+       if(pl==null)     throw  new Exception("plant id not found");
+       
             tx=session.beginTransaction();
             TblPlant plant= new TblPlant();  //(new BigDecimal(3), "babu", "kochu");
            plant.setIPlantId(new BigDecimal(id));
@@ -98,7 +91,8 @@ public class Plant_handler implements helper{
         }
         catch(Exception e)
         {
-             if (tx != null) {
+            error_flag=true;
+            if (tx != null) {
                 tx.rollback();
             e.printStackTrace();
         }
@@ -106,11 +100,17 @@ public class Plant_handler implements helper{
         finally
         {
             session.close();
+           if(error_flag==false) return "Success";
+           else         return "Failure";
+            
         }    
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-TblPlant get_tuple(int id)   //, String &name, String &owner)
+   
+   
+    
+public TblPlant get_tuple(int id)   //, String &name, String &owner)
 {
     session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
     Transaction tx = null;
@@ -135,35 +135,22 @@ TblPlant get_tuple(int id)   //, String &name, String &owner)
         }      
 }
 
-    
-    @Override
-    public void update_in_table() {
-        
-       update_in_table(2,null ,"btr");
-        //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
-   /*
+      /*
             if new parameters contain null value, then the previous value of that particular fiels will be retained
     */
-    public void update_in_table(int id,String name,String owner) {
+    public String update_in_table(int id,String name,String owner) {
         
        session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
-    
-        org.hibernate.Transaction tx = null;
+        
+       boolean error_flag=false;
+        
+       org.hibernate.Transaction tx = null;
         try
         {
            // org.hibernate.Transaction tx=session.beginTransaction();
             
      TblPlant plant=(TblPlant) session.get(TblPlant.class ,new BigDecimal(id));
-      if(FLAG==true)
-      {
-         if(name!=plant.getTPlantName() || owner!=plant.getTPlantOwner())
-        {   
-              if(name == null || name.isEmpty())  name=plant.getTPlantName();
-              if(owner==null || owner.isEmpty())  owner=plant.getTPlantOwner();
-        }
-      }
+      
                  
         tx=session.beginTransaction();
           
@@ -175,7 +162,8 @@ TblPlant get_tuple(int id)   //, String &name, String &owner)
         }
         catch(Exception e)
         {
-             if (tx != null) {
+           error_flag = true; 
+            if (tx != null) {
                 tx.rollback();
             e.printStackTrace();
         }
@@ -183,9 +171,12 @@ TblPlant get_tuple(int id)   //, String &name, String &owner)
         finally
         {
             session.close();
+           if(error_flag==false) return "Success";
+           else         return "Failure";
+            
         }
     }
 
     
-     
+    
 }

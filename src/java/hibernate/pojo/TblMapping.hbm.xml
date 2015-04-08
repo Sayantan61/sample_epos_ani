@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 2, 2015 12:31:44 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 7, 2015 9:20:08 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="hibernate.pojo.TblMapping" table="tbl_mapping" schema="pr_inplant" optimistic-lock="version">
+    <class name="hibernate.pojo.TblMapping" table="tbl_mapping" schema="pr_inplant">
         <id name="ITripId" type="big_decimal">
             <column name="i_trip_id" precision="30" scale="0" />
-            <generator class="assigned" />
+            <generator class="native"></generator>
         </id>
         <many-to-one name="tblCard" class="hibernate.pojo.TblCard" fetch="select">
-            <column name="i_card_id" precision="30" scale="0" />
+            <column name="c_card_id" precision="30" scale="0" />
         </many-to-one>
         <many-to-one name="tblDo" class="hibernate.pojo.TblDo" fetch="select">
             <column name="i_do_id" precision="30" scale="0" />

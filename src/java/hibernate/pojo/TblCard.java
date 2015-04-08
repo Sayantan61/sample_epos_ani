@@ -1,8 +1,8 @@
 package hibernate.pojo;
-// Generated Apr 2, 2015 12:31:44 PM by Hibernate Tools 4.3.1
+// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
 
 
-import java.math.BigDecimal;
+import java.lang.String;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +12,8 @@ import java.util.Set;
 public class TblCard  implements java.io.Serializable {
 
 
-     private BigDecimal ICardId;
+    private String CCardId;
+    //private String CCardId;
      private TblPlant tblPlant;
      private Set tblVehicleFlights = new HashSet(0);
      private Set tblMappings = new HashSet(0);
@@ -21,23 +22,22 @@ public class TblCard  implements java.io.Serializable {
     }
 
 	
-    public TblCard(BigDecimal ICardId, TblPlant tblPlant) {
-        this.ICardId = ICardId;
-        this.tblPlant = tblPlant;
+    public TblCard(String CCardId) {
+        this.CCardId = CCardId;
     }
-    public TblCard(BigDecimal ICardId, TblPlant tblPlant, Set tblVehicleFlights, Set tblMappings) {
-       this.ICardId = ICardId;
+    public TblCard(String CCardId, TblPlant tblPlant, Set tblVehicleFlights, Set tblMappings) {
+       this.CCardId = CCardId;
        this.tblPlant = tblPlant;
        this.tblVehicleFlights = tblVehicleFlights;
        this.tblMappings = tblMappings;
     }
    
-    public BigDecimal getICardId() {
-        return this.ICardId;
+    public String getCCardId() {
+        return this.CCardId;
     }
     
-    public void setICardId(BigDecimal ICardId) {
-        this.ICardId = ICardId;
+    public void setCCardId(String CCardId) {
+        this.CCardId = CCardId;
     }
     public TblPlant getTblPlant() {
         return this.tblPlant;

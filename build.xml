@@ -7,8 +7,8 @@
 <!-- the Compile on Save feature is turned off for the project. -->
 <!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
 <!-- in the project's Project Properties dialog box.-->
-<project name="sample_epos" default="default" basedir=".">
-    <description>Builds, tests, and runs the project sample_epos.</description>
+<project name="sample_epos_ani" default="default" basedir=".">
+    <description>Builds, tests, and runs the project sample_epos_ani.</description>
     <import file="nbproject/build-impl.xml"/>
     <!--
 
