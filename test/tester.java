@@ -46,9 +46,9 @@ String reportDate = df.format(today);
 System.out.println("Report Date: " + reportDate);
         
         
-      /*Session session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
-                Query query=session.createQuery("FROM TblPlant WHERE t_plant_name= :name AND t_plant_owner= :owner ORDER BY i_plant_id DESC");
-                query.setParameter("name","jrd");
+      Session session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
+                Query query=session.createQuery("FROM TblPlant WHERE t_plant_owner= :owner ORDER BY i_plant_id DESC");
+                //query.setParameter("name","jrd");
                 query.setParameter("owner","tata");
                 List emp= query.setMaxResults(5).list();
               
@@ -59,7 +59,7 @@ System.out.println("Report Date: " + reportDate);
                 {
                 TblPlant last_swipe=(TblPlant) it.next();
                 display d=new display(last_swipe);
-                }*/
+                }
                 
         /* try {
             Thread t=new Thread(new starter(2));

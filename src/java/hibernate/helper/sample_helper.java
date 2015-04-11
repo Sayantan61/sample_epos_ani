@@ -77,4 +77,55 @@ public class sample_helper {
         }
   }    
 
+      public  List run_query(String str[],int n)
+    {
+        
+       boolean error_flag=false;
+       Session  session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
+    
+        org.hibernate.Transaction tx = null;
+        List emp=null;
+        //Iterator it=null;
+        try
+        {
+    
+            String HQL_Query=str[0];
+            //if(n<0)   throw new Exception("Insert positive number");     
+    // org.hibernate.Transaction tx=session.beginTransaction();
+            tx=session.beginTransaction();
+            /*
+            String HQL_query="from TblPlant where T_Plant_Name= :TPlantName";
+             String HQL_query="from TblPlant where T_Plant_Name= :TPlantName or t_plant_owner= :t_plant_owner";
+            org.hibernate.Query query = session.createQuery(HQL_query);
+            
+            query.setParameter("TPlantName",plant_name);
+            query.setParameter("t_plant_owner", plant_owner);
+            */           
+          
+        org.hibernate.Query query=session.createQuery(HQL_Query);
+        for(int i=1; i<str.length;i+=2)
+            query.setParameter(str[i],str[i+1]);
+       if (n>0) emp= query.setMaxResults(n).list();
+       else         query.list();
+        
+        //emp = session.createQuery(HQL_Query).list();                      
+            
+            tx.commit();
+            
+        }
+        catch(Exception e)
+        {
+            error_flag=true; 
+            if (tx != null) {
+                tx.rollback();
+            e.printStackTrace();
+        }
+        }
+        finally
+        {
+            session.close();
+            return emp;
+          //return (it);
+        }
+    }
 }
