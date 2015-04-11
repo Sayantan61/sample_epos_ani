@@ -23,7 +23,7 @@ public class tester2 {
         String t_plant_owner="tata";
          //System.out.println ("If you need to 'quote' in Java");
         //System.out.println ("you can use double \" quote");
-        String hq[]={"FROM TblPlant WHERE t_plant_owner= :owner AND t_plant_name= :name ORDER BY i_plant_id DESC","owner","tata","name","JRD"};
+        String hq[]={"FROM TblPlant WHERE t_plant_name= :name AND t_plant_owner=:owner ORDER BY i_plant_id DESC","name","JRD","owner","Tata"};
       
             List l=ph.run_query(hq, 5);
                 

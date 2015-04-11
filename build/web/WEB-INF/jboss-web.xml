@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jboss-web xmlns="http://www.jboss.com/xml/ns/javaee">
   <context-root>/sample_epos_ani</context-root>
+  <logger category="org.hibernate">
+     <level name="TRACE"/>
+</logger>
 </jboss-web>

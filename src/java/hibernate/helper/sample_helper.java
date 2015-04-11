@@ -89,7 +89,7 @@ public class sample_helper {
         try
         {
     
-            String HQL_Query=str[0];
+           // String HQL_Query=str[0];
             //if(n<0)   throw new Exception("Insert positive number");     
     // org.hibernate.Transaction tx=session.beginTransaction();
             tx=session.beginTransaction();
@@ -102,13 +102,17 @@ public class sample_helper {
             query.setParameter("t_plant_owner", plant_owner);
             */           
           
-        org.hibernate.Query query=session.createQuery(HQL_Query);
-        for(int i=1; i<str.length;i+=2)
-            query.setParameter(str[i],str[i+1]);
-       if (n>0) emp= query.setMaxResults(n).list();
-       else         query.list();
+        org.hibernate.Query query=session.createQuery(str[0]);
         
-        //emp = session.createQuery(HQL_Query).list();                      
+        for(int i=1; i<str.length;i+=2)
+          query=query.setParameter(str[i],str[i+1]);
+        
+        
+       if (n>0) 
+                 emp= query.setMaxResults(n).list();
+     else        emp= query.list();
+        
+        //emp = session.createQuery(HQL_Query).list();  */                    
             
             tx.commit();
             
