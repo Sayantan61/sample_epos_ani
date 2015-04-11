@@ -5,7 +5,7 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<jsp:useBean id="plant" scope="page" class="hibernate.helper.Plant_handler" />
+<jsp:useBean id="card" scope="page" class="hibernate.helper.Card_handler" />
 <!DOCTYPE html>
 <html>
     <head>
@@ -14,8 +14,9 @@
     </head>
     <body>
         <%
-        //  plant.delete_from_table();
-            plant.update_in_table();                            %>
+          //plant.update_in_table(1, "alan", null);
+            card.insert_into_table(5433,1);
+                               %>
         <h1>Created!</h1>
     </body>
 </html>

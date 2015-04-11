@@ -11,6 +11,14 @@ import hibernate.pojo.*;
  * @author ani
  */
 public class display {
+    public display(TblVehicleFlight x)
+    {
+        if(x!=null)
+        {
+            System.out.println(x.getIVfid()+"\t"+x.getTblEpos().getIMachineId()+"\t"+x.getTblCard().getCCardId()+"\t"+x.getTblMapping().getITripId()+"\t"+x.getDtTime());
+        }
+        else    System.err.println("Cannot print Null value");
+    }
 
     public display(TblPlant x)
     {

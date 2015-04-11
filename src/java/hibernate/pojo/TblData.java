@@ -22,6 +22,11 @@ public class TblData  implements java.io.Serializable {
        this.eposData = eposData;
        this.seen = seen;
     }
+    
+    public  boolean getseen()
+    {
+        return this.seen;
+    }
    
     public BigDecimal getIDataId() {
         return this.IDataId;
