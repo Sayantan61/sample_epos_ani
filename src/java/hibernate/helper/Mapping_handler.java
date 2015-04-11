@@ -45,12 +45,13 @@ public class Mapping_handler extends sample_helper{
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
         
         boolean error_flag=false;
+        TblMapping  map=new TblMapping();
         
         Transaction tx = null;
         try
         {   
             tx=session.beginTransaction();
-            TblMapping  map=new TblMapping();
+            
           //  tp.setIProcessId(new BigDecimal(Process_id));
             Plant_handler ph=new Plant_handler();
             TblPlant plant= ph.get_tuple(plant_id);
@@ -113,7 +114,7 @@ public class Mapping_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return map.getITripId().toString();//"Success";
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

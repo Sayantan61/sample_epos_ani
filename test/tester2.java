@@ -15,9 +15,9 @@ import hibernate.pojo.*;
 public class tester2 {
     public static void main(String[] args)
     {
-        Plant_handler ph=new Plant_handler();
+        Plant_Ops ph=new Plant_Ops();
         String str=ph.insert_into_table("JRD","Tata");
-        
+        System.out.println("Id is "+str);
         //String replies with "success" or "failure"
     }
     

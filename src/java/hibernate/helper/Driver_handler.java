@@ -80,12 +80,13 @@ public class Driver_handler extends sample_helper{
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
     
         org.hibernate.Transaction tx = null;
+        TblDriver drv=new TblDriver();
         try
         {
            
             tx=session.beginTransaction();
             
-            TblDriver drv=new TblDriver();
+            
             drv.setIDriverId(new BigDecimal(1));
             
             {
@@ -134,7 +135,7 @@ drv.setTDriverAddr2(dr_addr2);//drv.setTDrivererAddr2(dr_address2);
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
+           if(error_flag==false) return drv.getIDriverId().toString();//"Success";
            else         return "Failure";
         }
         

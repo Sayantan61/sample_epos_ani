@@ -76,6 +76,7 @@ import org.hibernate.Transaction;
     {
         boolean error_flag=false;
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
+    TblTransporter trp=new TblTransporter();
     
         org.hibernate.Transaction tx = null;
         try
@@ -83,8 +84,8 @@ import org.hibernate.Transaction;
            
             tx=session.beginTransaction();
             
-            TblTransporter trp=new TblTransporter();
-            trp.setITransporterId(new BigDecimal(1));
+            
+            trp.setITransporterId(new BigDecimal(tr_id));
             
             {
                 Plant_handler ph=new Plant_handler();
@@ -119,7 +120,7 @@ import org.hibernate.Transaction;
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
+           if(error_flag==false) return trp.getITransporterId().toString();//"Success";
            else         return "Failure";
         }
         

@@ -29,7 +29,7 @@ public class Epos_handler extends sample_helper{
 
      
     
-      public String insert_into_table(int machine_id,int plant_id,int terminal_id,String Gateway_name)
+     /* public String insert_into_table(int machine_id,int plant_id,int terminal_id,String Gateway_name)
   {
         boolean error_flag=false;
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
@@ -73,6 +73,7 @@ public class Epos_handler extends sample_helper{
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
+     
        public String update_in_table(int machine_id,int plant_id,int terminal_id,String Gateway_name)
   {
         session = hibernate.NewHibernateUtil.getSessionFactory().openSession();
@@ -115,19 +116,19 @@ public class Epos_handler extends sample_helper{
         }   
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
   }
-    
+    */
       
       public String insert_into_table(int machine_id,int plant_id,int terminal_id,int Gate_no,String Gateway_name, String location,boolean Bothways,int time_in_between)
   {
         boolean error_flag=false;
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
-    
+    TblEpos ep=new TblEpos();
         org.hibernate.Transaction tx = null;
         try
         {
            
             tx=session.beginTransaction();
-            TblEpos ep=new TblEpos();
+            
             ep.setIMachineId(new BigDecimal(machine_id));
             
             Plant_handler ph=new Plant_handler();
@@ -158,7 +159,7 @@ public class Epos_handler extends sample_helper{
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
+           if(error_flag==false) return ep.getIMachineId().toString();//"Success";
            else         return "Failure";
         }
         

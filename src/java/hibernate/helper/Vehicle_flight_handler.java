@@ -39,12 +39,13 @@ public class Vehicle_flight_handler extends sample_helper{
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
         
         boolean error_flag=false;
+        TblVehicleFlight  vf=new TblVehicleFlight();
         
         Transaction tx = null;
         try
         {   
             tx=session.beginTransaction();
-            TblVehicleFlight  vf=new TblVehicleFlight();
+            
           //  tp.setIProcessId(new BigDecimal(Process_id));
             Epos_handler eh=new Epos_handler();
             TblEpos epos=eh.get_tuple(machine_id);
@@ -71,7 +72,7 @@ public class Vehicle_flight_handler extends sample_helper{
             //map.setDtCreated(dt_created);
             //map.setBIsActive(is_active);
            // tp.setTProcessType(process_type);
-            session.save(map);
+            session.save(vf);
             tx.commit();
         }
         catch(Exception e)
@@ -85,7 +86,7 @@ public class Vehicle_flight_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return vf.getIVfid().toString();//"Success";
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

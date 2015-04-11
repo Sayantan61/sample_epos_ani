@@ -22,7 +22,7 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 
 
-public class Tblexception_handler extends sample_helper{
+public class Exceptions_handler extends sample_helper{
      private Session session;
  
     /**
@@ -44,11 +44,13 @@ public class Tblexception_handler extends sample_helper{
         
         boolean error_flag=false;
         
+        TblExceptions exc =new  TblExceptions();
+        
         Transaction tx = null;
         try
         {   
             tx=session.beginTransaction();
-            TblExceptions exc =new  TblExceptions(); //TblVehicleFlight();
+             //TblVehicleFlight();
           //  tp.setIProcessId(new BigDecimal(Process_id));
             Epos_handler eh=new Epos_handler();
             TblEpos epos=eh.get_tuple(machine_id);
@@ -77,7 +79,7 @@ public class Tblexception_handler extends sample_helper{
             //map.setDtCreated(dt_created);
             //map.setBIsActive(is_active);
            // tp.setTProcessType(process_type);
-            session.save(map);
+            session.save(exc);
             tx.commit();
         }
         catch(Exception e)
@@ -91,7 +93,7 @@ public class Tblexception_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return exc.getIExceptionId().toString();//"Success";
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -194,7 +196,7 @@ public class Tblexception_handler extends sample_helper{
         try
         {   
             
-     Tblexception_handler eh=new Tblexception_handler();//Vehicle_flight_handler();//Mapping_handler();
+     Exceptions_handler eh=new Exceptions_handler();//Vehicle_flight_handler();//Mapping_handler();
      TblExceptions exc=eh.get_tuple(id);
 // TblMapping map=mh.get_tuple(id);
             //Process_handler t=new Process_handler();

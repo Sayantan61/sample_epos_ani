@@ -63,10 +63,12 @@ public class Do_handler extends sample_helper{
         boolean error_flag=false;
         
         Transaction tx = null;
+        TblDo card=new TblDo();
+        
         try
         {   
             tx=session.beginTransaction();
-            TblDo card=new TblDo();
+            
             card.setIDoId(new BigDecimal(do_id));
             Plant_handler ph=new Plant_handler();
             TblPlant plant= ph.get_tuple(plant_id);
@@ -94,7 +96,7 @@ public class Do_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return card.getIDoId().toString();//"Success";
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

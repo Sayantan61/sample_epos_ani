@@ -37,13 +37,13 @@ public class Plant_handler extends sample_helper {
   {
         boolean error_flag=false;
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
-    
+    hibernate.pojo.TblPlant plant= new hibernate.pojo.TblPlant();
         org.hibernate.Transaction tx = null;
         try
         {
            // org.hibernate.Transaction tx=session.beginTransaction();
             tx=session.beginTransaction();
-            hibernate.pojo.TblPlant plant= new hibernate.pojo.TblPlant();  //(new BigDecimal(3), "babu", "kochu");
+              //(new BigDecimal(3), "babu", "kochu");
           // plant.setIPlantId(new BigDecimal(id));
             plant.setTPlantName(name);
             plant.setTPlantOwner(owner);
@@ -62,7 +62,7 @@ public class Plant_handler extends sample_helper {
         finally
         {
             session.close();
-           if(error_flag==false) return "Success";
+           if(error_flag==false) return plant.getIPlantId().toString();
            else         return "Failure";
         }   
 //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

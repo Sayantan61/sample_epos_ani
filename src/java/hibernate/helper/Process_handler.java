@@ -37,12 +37,13 @@ public class Process_handler extends sample_helper{
         session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
         
         boolean error_flag=false;
+        TblProcess tp=new TblProcess();
         
         Transaction tx = null;
         try
         {   
             tx=session.beginTransaction();
-            TblProcess tp=new TblProcess();
+            
           //  tp.setIProcessId(new BigDecimal(Process_id));
             Plant_handler ph=new Plant_handler();
             TblPlant plant= ph.get_tuple(plant_id);
@@ -65,7 +66,7 @@ public class Process_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return tp.getIProcessId().toString(); //"Success";
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.

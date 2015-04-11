@@ -69,10 +69,11 @@ public class Card_handler extends sample_helper{
         boolean error_flag=false;
         
         Transaction tx = null;
+        TblCard card=new TblCard();
         try
         {   
             tx=session.beginTransaction();
-            TblCard card=new TblCard();
+            
             card.setCCardId(card_id);
             
             Plant_handler ph=new Plant_handler();
@@ -95,7 +96,7 @@ public class Card_handler extends sample_helper{
         finally
         {
             session.close();
-            if(error_flag==false) return "Success";
+            if(error_flag==false) return card.getCCardId();
            else         return "Failure";
         }
     //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
