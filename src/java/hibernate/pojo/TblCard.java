@@ -1,8 +1,7 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
-import java.lang.String;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,8 +11,7 @@ import java.util.Set;
 public class TblCard  implements java.io.Serializable {
 
 
-    private String CCardId;
-    //private String CCardId;
+     private String CCardId;
      private TblPlant tblPlant;
      private Set tblVehicleFlights = new HashSet(0);
      private Set tblMappings = new HashSet(0);
@@ -22,8 +20,9 @@ public class TblCard  implements java.io.Serializable {
     }
 
 	
-    public TblCard(String CCardId) {
+    public TblCard(String CCardId, TblPlant tblPlant) {
         this.CCardId = CCardId;
+        this.tblPlant = tblPlant;
     }
     public TblCard(String CCardId, TblPlant tblPlant, Set tblVehicleFlights, Set tblMappings) {
        this.CCardId = CCardId;

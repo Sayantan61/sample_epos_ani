@@ -38,7 +38,6 @@ public class Plant_Ops extends sample_helper {
      * @param n
      * @return
      */
-    @Override
     public  List run_query(String str[],int n)
     {
         

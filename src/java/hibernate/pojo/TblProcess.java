@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -22,10 +22,12 @@ public class TblProcess  implements java.io.Serializable {
     }
 
 	
-    public TblProcess(TblPlant tblPlant) {
+    public TblProcess(BigDecimal IProcessId, TblPlant tblPlant) {
+        this.IProcessId = IProcessId;
         this.tblPlant = tblPlant;
     }
-    public TblProcess(TblPlant tblPlant, String TProcessType, Set tblMappings) {
+    public TblProcess(BigDecimal IProcessId, TblPlant tblPlant, String TProcessType, Set tblMappings) {
+       this.IProcessId = IProcessId;
        this.tblPlant = tblPlant;
        this.TProcessType = TProcessType;
        this.tblMappings = tblMappings;

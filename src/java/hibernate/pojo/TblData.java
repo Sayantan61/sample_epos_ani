@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:32:40 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -21,11 +21,6 @@ public class TblData  implements java.io.Serializable {
        this.IDataId = IDataId;
        this.eposData = eposData;
        this.seen = seen;
-    }
-    
-    public  boolean getseen()
-    {
-        return this.seen;
     }
    
     public BigDecimal getIDataId() {
@@ -49,6 +44,11 @@ public class TblData  implements java.io.Serializable {
     public void setSeen(boolean seen) {
         this.seen = seen;
     }
+    public boolean getseen() {
+    return seen;
+    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 

@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.io.Serializable;
@@ -23,10 +23,12 @@ public class TblLinks  implements java.io.Serializable {
     }
 
 	
-    public TblLinks(TblPlant tblPlant) {
+    public TblLinks(BigDecimal ILid, TblPlant tblPlant) {
+        this.ILid = ILid;
         this.tblPlant = tblPlant;
     }
-    public TblLinks(TblEpos tblEposByITo, TblEpos tblEposByIFrom, TblPlant tblPlant, Serializable intervalTimediff, BigDecimal ICost) {
+    public TblLinks(BigDecimal ILid, TblEpos tblEposByITo, TblEpos tblEposByIFrom, TblPlant tblPlant, Serializable intervalTimediff, BigDecimal ICost) {
+       this.ILid = ILid;
        this.tblEposByITo = tblEposByITo;
        this.tblEposByIFrom = tblEposByIFrom;
        this.tblPlant = tblPlant;

@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -26,8 +26,9 @@ public class TblDo  implements java.io.Serializable {
     }
 
 	
-    public TblDo(BigDecimal IDoId) {
+    public TblDo(BigDecimal IDoId, TblPlant tblPlant) {
         this.IDoId = IDoId;
+        this.tblPlant = tblPlant;
     }
     public TblDo(BigDecimal IDoId, TblPlant tblPlant, Date dtIssueDate, Date dtIssueTime, String TConsignee, String TConsigner, String TDeliveryAddress, Set tblMappings) {
        this.IDoId = IDoId;

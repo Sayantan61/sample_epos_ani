@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -29,8 +29,9 @@ public class TblEpos  implements java.io.Serializable {
     }
 
 	
-    public TblEpos(BigDecimal IMachineId, BigDecimal ITerminalId, boolean BBothways) {
+    public TblEpos(BigDecimal IMachineId, TblPlant tblPlant, BigDecimal ITerminalId, boolean BBothways) {
         this.IMachineId = IMachineId;
+        this.tblPlant = tblPlant;
         this.ITerminalId = ITerminalId;
         this.BBothways = BBothways;
     }
@@ -115,10 +116,6 @@ public class TblEpos  implements java.io.Serializable {
     public Set getTblVehicleFlights() {
         return this.tblVehicleFlights;
     }
-    public  boolean  getisBBothways()
-    {
-        return this.BBothways;
-    }
     
     public void setTblVehicleFlights(Set tblVehicleFlights) {
         this.tblVehicleFlights = tblVehicleFlights;
@@ -137,6 +134,11 @@ public class TblEpos  implements java.io.Serializable {
     public void setTblLinksesForIFrom(Set tblLinksesForIFrom) {
         this.tblLinksesForIFrom = tblLinksesForIFrom;
     }
+    public boolean getisBBothways() {
+    return isBBothways();
+    //throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
 
 
 

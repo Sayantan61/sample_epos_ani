@@ -15,8 +15,10 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import hibernate.helper.Epos_handler;
+import hibernate.helper.Exceptions_handler;
 import hibernate.helper.Mapping_handler;
 import hibernate.helper.Vehicle_flight_handler;
+import java.time.Instant;
 import java.util.Iterator;
 import java.util.List;
 import org.hibernate.Query;
@@ -38,6 +40,7 @@ public class epos_data_handling implements Runnable{
     private TblData data;
     //Time time_v;
     Date date_time;
+   
 
     public epos_data_handling(TblData dat) {
         this.data=dat;
@@ -62,7 +65,7 @@ public class epos_data_handling implements Runnable{
     Tid=Integer.parseInt(values[3]);
     Mid=Integer.parseInt(values[4]);
     card_no=values[5];
-    Date date = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(values[7]+values[6]);
+    date_time = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss").parse(values[7]+values[6]);
    
 }
     public void save_this_swipe()
@@ -87,6 +90,26 @@ public class epos_data_handling implements Runnable{
                    
                 vfh.insert_into_table(TModelNo, TDataStatus, TEvent, date_time, Mid, card_no,trip_id);
     }
+    
+    void create_an_exception()
+    {          
+        //to get the trip_id 
+       Mapping_handler mh=new Mapping_handler(); //Vehicle_flight_handler();
+        String hql_query[]={"FROM TblMapping WHERE c_card_id= :card AND b_is_active= true","id",card_no};
+        List emp=mh.run_query(hql_query, 1,false);
+        TblMapping v= (TblMapping) emp.iterator().next();
+         
+        int trip_id= v.getITripId().intValue();
+        int plant_id=v.getTblPlant().getIPlantId().intValue();
+        
+        //this is dummy data, will be filled in reality by timer function provided by agent
+        Date expected_time=Date.from(Instant.EPOCH);
+        
+        Exceptions_handler eh=new Exceptions_handler();
+        eh.insert_into_table(plant_id, trip_id, Mid,expected_time , false, date_time);
+       // eh.
+    }
+    
     @Override
     public void run() {
         
@@ -110,10 +133,17 @@ public class epos_data_handling implements Runnable{
        {
  
                //retrieve the last swipe 
-               Session session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
+          /* { Session session=hibernate.NewHibernateUtil.getSessionFactory().openSession();
                 Query query=session.createQuery("FROM TblVehicleFlight WHERE c_card_id= :id ORDER BY dt_time DESC");
                 query.setParameter("id",card_no);
                 List emp= query.setMaxResults(1).list();
+            }*/
+           
+           Vehicle_flight_handler vfh=new Vehicle_flight_handler();
+           
+           String hql_query[]={"FROM TblVehicleFlight WHERE c_card_id= :id ORDER BY dt_time ASC", "id",card_no};
+            List emp=vfh.run_query(hql_query,1,false);
+        
               
     // List l=vfh.run_query("FROM TblVehicleFlight WHERE c_card_id= :id ORDER BY dt_time ASC", 1);    //ORDER BY dt_time DESC"
                 Iterator it=emp.iterator();

@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -12,19 +12,20 @@ import javax.persistence.Column;
  */
 public class TblPlant  implements java.io.Serializable {
 
-    @Column(columnDefinition = "serial")
+@Column(columnDefinition = "serial")
      private BigDecimal IPlantId;
      private String TPlantName;
      private String TPlantOwner;
-     private Set tblLinkses = new HashSet(0);
-     private Set tblDrivers = new HashSet(0);
+     private Set tblLivePaths = new HashSet(0);
      private Set tblEposes = new HashSet(0);
      private Set tblPathses = new HashSet(0);
      private Set tblExceptionses = new HashSet(0);
+     private Set tblUserses = new HashSet(0);
+     private Set tblLinkses = new HashSet(0);
+     private Set tblDrivers = new HashSet(0);
      private Set tblDos = new HashSet(0);
      private Set tblVehicles = new HashSet(0);
      private Set tblMappings = new HashSet(0);
-     private Set tblUserses = new HashSet(0);
      private Set tblCards = new HashSet(0);
      private Set tblTransporters = new HashSet(0);
      private Set tblProcesses = new HashSet(0);
@@ -32,18 +33,24 @@ public class TblPlant  implements java.io.Serializable {
     public TblPlant() {
     }
 
-    public TblPlant(String TPlantName, String TPlantOwner, Set tblLinkses, Set tblDrivers, Set tblEposes, Set tblPathses, Set tblExceptionses, Set tblDos, Set tblVehicles, Set tblMappings, Set tblUserses, Set tblCards, Set tblTransporters, Set tblProcesses) {
+	
+    public TblPlant(BigDecimal IPlantId) {
+        this.IPlantId = IPlantId;
+    }
+    public TblPlant(BigDecimal IPlantId, String TPlantName, String TPlantOwner, Set tblLivePaths, Set tblEposes, Set tblPathses, Set tblExceptionses, Set tblUserses, Set tblLinkses, Set tblDrivers, Set tblDos, Set tblVehicles, Set tblMappings, Set tblCards, Set tblTransporters, Set tblProcesses) {
+       this.IPlantId = IPlantId;
        this.TPlantName = TPlantName;
        this.TPlantOwner = TPlantOwner;
-       this.tblLinkses = tblLinkses;
-       this.tblDrivers = tblDrivers;
+       this.tblLivePaths = tblLivePaths;
        this.tblEposes = tblEposes;
        this.tblPathses = tblPathses;
        this.tblExceptionses = tblExceptionses;
+       this.tblUserses = tblUserses;
+       this.tblLinkses = tblLinkses;
+       this.tblDrivers = tblDrivers;
        this.tblDos = tblDos;
        this.tblVehicles = tblVehicles;
        this.tblMappings = tblMappings;
-       this.tblUserses = tblUserses;
        this.tblCards = tblCards;
        this.tblTransporters = tblTransporters;
        this.tblProcesses = tblProcesses;
@@ -70,19 +77,12 @@ public class TblPlant  implements java.io.Serializable {
     public void setTPlantOwner(String TPlantOwner) {
         this.TPlantOwner = TPlantOwner;
     }
-    public Set getTblLinkses() {
-        return this.tblLinkses;
+    public Set getTblLivePaths() {
+        return this.tblLivePaths;
     }
     
-    public void setTblLinkses(Set tblLinkses) {
-        this.tblLinkses = tblLinkses;
-    }
-    public Set getTblDrivers() {
-        return this.tblDrivers;
-    }
-    
-    public void setTblDrivers(Set tblDrivers) {
-        this.tblDrivers = tblDrivers;
+    public void setTblLivePaths(Set tblLivePaths) {
+        this.tblLivePaths = tblLivePaths;
     }
     public Set getTblEposes() {
         return this.tblEposes;
@@ -105,6 +105,27 @@ public class TblPlant  implements java.io.Serializable {
     public void setTblExceptionses(Set tblExceptionses) {
         this.tblExceptionses = tblExceptionses;
     }
+    public Set getTblUserses() {
+        return this.tblUserses;
+    }
+    
+    public void setTblUserses(Set tblUserses) {
+        this.tblUserses = tblUserses;
+    }
+    public Set getTblLinkses() {
+        return this.tblLinkses;
+    }
+    
+    public void setTblLinkses(Set tblLinkses) {
+        this.tblLinkses = tblLinkses;
+    }
+    public Set getTblDrivers() {
+        return this.tblDrivers;
+    }
+    
+    public void setTblDrivers(Set tblDrivers) {
+        this.tblDrivers = tblDrivers;
+    }
     public Set getTblDos() {
         return this.tblDos;
     }
@@ -125,13 +146,6 @@ public class TblPlant  implements java.io.Serializable {
     
     public void setTblMappings(Set tblMappings) {
         this.tblMappings = tblMappings;
-    }
-    public Set getTblUserses() {
-        return this.tblUserses;
-    }
-    
-    public void setTblUserses(Set tblUserses) {
-        this.tblUserses = tblUserses;
     }
     public Set getTblCards() {
         return this.tblCards;

@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -25,12 +25,14 @@ public class TblVehicleFlight  implements java.io.Serializable {
     }
 
 	
-    public TblVehicleFlight(TblCard tblCard, TblEpos tblEpos, TblMapping tblMapping) {
+    public TblVehicleFlight(BigDecimal IVfid, TblCard tblCard, TblEpos tblEpos, TblMapping tblMapping) {
+        this.IVfid = IVfid;
         this.tblCard = tblCard;
         this.tblEpos = tblEpos;
         this.tblMapping = tblMapping;
     }
-    public TblVehicleFlight(TblCard tblCard, TblEpos tblEpos, TblMapping tblMapping, Date dtTime, String TModelNo, String TDataStatus, String TEvent) {
+    public TblVehicleFlight(BigDecimal IVfid, TblCard tblCard, TblEpos tblEpos, TblMapping tblMapping, Date dtTime, String TModelNo, String TDataStatus, String TEvent) {
+       this.IVfid = IVfid;
        this.tblCard = tblCard;
        this.tblEpos = tblEpos;
        this.tblMapping = tblMapping;

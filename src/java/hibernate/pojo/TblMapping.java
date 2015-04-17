@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -18,6 +18,7 @@ public class TblMapping  implements java.io.Serializable {
      private TblCard tblCard;
      private TblDo tblDo;
      private TblDriver tblDriver;
+     private TblLivePath tblLivePath;
      private TblPlant tblPlant;
      private TblProcess tblProcess;
      private TblTransporter tblTransporter;
@@ -31,15 +32,20 @@ public class TblMapping  implements java.io.Serializable {
     }
 
 	
-    public TblMapping(TblPlant tblPlant, TblVehicle tblVehicle, boolean BIsActive) {
+    public TblMapping(BigDecimal ITripId, TblCard tblCard, TblLivePath tblLivePath, TblPlant tblPlant, TblVehicle tblVehicle, boolean BIsActive) {
+        this.ITripId = ITripId;
+        this.tblCard = tblCard;
+        this.tblLivePath = tblLivePath;
         this.tblPlant = tblPlant;
         this.tblVehicle = tblVehicle;
         this.BIsActive = BIsActive;
     }
-    public TblMapping(TblCard tblCard, TblDo tblDo, TblDriver tblDriver, TblPlant tblPlant, TblProcess tblProcess, TblTransporter tblTransporter, TblVehicle tblVehicle, Date dtCreated, boolean BIsActive, Set tblExceptionses, Set tblVehicleFlights) {
+    public TblMapping(BigDecimal ITripId, TblCard tblCard, TblDo tblDo, TblDriver tblDriver, TblLivePath tblLivePath, TblPlant tblPlant, TblProcess tblProcess, TblTransporter tblTransporter, TblVehicle tblVehicle, Date dtCreated, boolean BIsActive, Set tblExceptionses, Set tblVehicleFlights) {
+       this.ITripId = ITripId;
        this.tblCard = tblCard;
        this.tblDo = tblDo;
        this.tblDriver = tblDriver;
+       this.tblLivePath = tblLivePath;
        this.tblPlant = tblPlant;
        this.tblProcess = tblProcess;
        this.tblTransporter = tblTransporter;
@@ -77,6 +83,13 @@ public class TblMapping  implements java.io.Serializable {
     
     public void setTblDriver(TblDriver tblDriver) {
         this.tblDriver = tblDriver;
+    }
+    public TblLivePath getTblLivePath() {
+        return this.tblLivePath;
+    }
+    
+    public void setTblLivePath(TblLivePath tblLivePath) {
+        this.tblLivePath = tblLivePath;
     }
     public TblPlant getTblPlant() {
         return this.tblPlant;

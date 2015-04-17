@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -24,13 +24,15 @@ public class TblExceptions  implements java.io.Serializable {
     }
 
 	
-    public TblExceptions(TblEpos tblEpos, TblMapping tblMapping, TblPlant tblPlant, boolean BIsChecked) {
+    public TblExceptions(BigDecimal IExceptionId, TblEpos tblEpos, TblMapping tblMapping, TblPlant tblPlant, boolean BIsChecked) {
+        this.IExceptionId = IExceptionId;
         this.tblEpos = tblEpos;
         this.tblMapping = tblMapping;
         this.tblPlant = tblPlant;
         this.BIsChecked = BIsChecked;
     }
-    public TblExceptions(TblEpos tblEpos, TblMapping tblMapping, TblPlant tblPlant, Date dtCreated, Date dtExpectedTime, boolean BIsChecked) {
+    public TblExceptions(BigDecimal IExceptionId, TblEpos tblEpos, TblMapping tblMapping, TblPlant tblPlant, Date dtCreated, Date dtExpectedTime, boolean BIsChecked) {
+       this.IExceptionId = IExceptionId;
        this.tblEpos = tblEpos;
        this.tblMapping = tblMapping;
        this.tblPlant = tblPlant;

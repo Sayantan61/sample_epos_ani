@@ -11,12 +11,21 @@ t_plant_owner       text,
 CONSTRAINT pk_plant_plant_id PRIMARY KEY (i_plant_id)
 );
 
+CREATE TABLE  Pr_InPlant.tbl_live_path (
+    i_plant_id  numeric(32,0) NOT NULL,
+    i_path_id   numeric(32,0) NOT NULL,
+    t_curr_path text,
+    t_next      text,
+CONSTRAINT pk_live_path_id PRIMARY KEY (i_path_id),
+CONSTRAINT fk_live_path_plant_id FOREIGN KEY (i_plant_id) REFERENCES  Pr_InPlant.tbl_plant(i_plant_id) MATCH FULL
+);
+
 CREATE TABLE Pr_InPlant.tbl_card(
 i_plant_id          numeric(32,0) NOT NULL,
 c_card_id           character varying(32) NOT NULL,	--primary key
 
 CONSTRAINT pk_card_card_id PRIMARY KEY (c_card_id),
-CONSTRAINT fk_card_plant_id FOREIGN KEY(i_plant_id) REFERENCES Pr_InPlant.tbl_plant(i_plant_id) MATCH FULL
+CONSTRAINT fk_card_plant_id FOREIGN KEY  (i_plant_id) REFERENCES Pr_InPlant.tbl_plant(i_plant_id) MATCH FULL
 );
 
 CREATE  TABLE Pr_InPlant.tbl_transporter(
@@ -56,8 +65,9 @@ dt_modified         timestamp,
 b_is_deleted        boolean,			-- changed to boolean
 CONSTRAINT pk_driver_driver_id PRIMARY KEY (i_driver_id),
 CONSTRAINT fk_driver_transporter_id FOREIGN KEY(i_transporter_id) REFERENCES Pr_InPlant.tbl_transporter(i_transporter_id) MATCH FULL,
-CONSTRAINT fk_driver_plant_id FOREIGN KEY(i_plant_id) REFERENCES Pr_InPlant.tbl_plant(i_plant_id) MATCH FULL
+CONSTRAINT fk_driver_plant_id FOREIGN KEY(i_plant_id) REFERENCES Pr_InPlant.tbl_plant(i_plant_id)  MATCH FULL
 );
+
 
 CREATE TABLE pr_inplant.tbl_data
 (
@@ -137,6 +147,7 @@ i_transporter_id        numeric (30,0),
 i_do_id                 numeric (30,0),
 dt_created              timestamp  default CURRENT_timestamp,
 b_is_active             boolean NOT NULL,
+i_path_id               numeric(32,0) NOT NULL,
 CONSTRAINT pk_mapping_trip    PRIMARY KEY (i_trip_id),
 CONSTRAINT fk_mapping_vehicle_id FOREIGN KEY(t_vehicle_id) REFERENCES Pr_InPlant.tbl_vehicle(t_vehicle_id) MATCH FULL,
 CONSTRAINT fk_mapping_driver_id FOREIGN KEY(i_driver_id) REFERENCES Pr_InPlant.tbl_driver(i_driver_id) MATCH FULL,
@@ -144,7 +155,8 @@ CONSTRAINT fk_mapping_transporter_id FOREIGN KEY(i_transporter_id) REFERENCES Pr
 CONSTRAINT fk_mapping_do_id FOREIGN KEY(i_do_id) REFERENCES Pr_InPlant.tbl_do(i_do_id) MATCH FULL,
 CONSTRAINT fk_mapping_process_id FOREIGN KEY(i_process_id) REFERENCES Pr_InPlant.tbl_process(i_process_id) MATCH FULL,
 CONSTRAINT fk_mapping_plant_id FOREIGN KEY(i_plant_id) REFERENCES Pr_InPlant.tbl_plant(i_plant_id) MATCH FULL,
-CONSTRAINT fk_mapping_card_id FOREIGN KEY(c_card_id) REFERENCES Pr_InPlant.tbl_card(c_card_id) MATCH FULL
+CONSTRAINT fk_mapping_card_id FOREIGN KEY(c_card_id) REFERENCES Pr_InPlant.tbl_card(c_card_id) MATCH FULL,
+CONSTRAINT fk_mapping_path_id FOREIGN KEY (i_path_id) REFERENCES Pr_InPlant.tbl_live_path(i_path_id) MATCH FULL
 );
 
 -- added primary key

@@ -1,5 +1,5 @@
 package hibernate.pojo;
-// Generated Apr 7, 2015 9:20:06 PM by Hibernate Tools 4.3.1
+// Generated Apr 17, 2015 9:43:47 PM by Hibernate Tools 4.3.1
 
 
 import java.math.BigDecimal;
@@ -28,8 +28,9 @@ public class TblTransporter  implements java.io.Serializable {
     }
 
 	
-    public TblTransporter(BigDecimal ITransporterId) {
+    public TblTransporter(BigDecimal ITransporterId, TblPlant tblPlant) {
         this.ITransporterId = ITransporterId;
+        this.tblPlant = tblPlant;
     }
     public TblTransporter(BigDecimal ITransporterId, TblPlant tblPlant, String TTransporterName, String TTransporterMobileNo, String TTransporterAddr, String TTransporterCity, String TTransporterState, String ITransporterPin, String TTransporterEmailId, Set tblMappings, Set tblDrivers) {
        this.ITransporterId = ITransporterId;

@@ -1,12 +1,12 @@
 <?xml version="1.0"?>
 <!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
 "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
-<!-- Generated Apr 7, 2015 9:20:08 PM by Hibernate Tools 4.3.1 -->
+<!-- Generated Apr 17, 2015 9:43:48 PM by Hibernate Tools 4.3.1 -->
 <hibernate-mapping>
-    <class name="hibernate.pojo.TblPlant" table="tbl_plant" schema="pr_inplant">
+    <class name="hibernate.pojo.TblPlant" table="tbl_plant" schema="pr_inplant" optimistic-lock="version">
         <id name="IPlantId" type="big_decimal">
             <column name="i_plant_id" precision="32" scale="0" />
-            <generator class="native"></generator>
+            <generator class="native" />
         </id>
         <property name="TPlantName" type="string">
             <column name="t_plant_name" />
@@ -14,17 +14,11 @@
         <property name="TPlantOwner" type="string">
             <column name="t_plant_owner" />
         </property>
-        <set name="tblLinkses" table="tbl_links" inverse="true" lazy="true" fetch="select">
+        <set name="tblLivePaths" table="tbl_live_path" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="i_plant_id" precision="32" scale="0" not-null="true" />
             </key>
-            <one-to-many class="hibernate.pojo.TblLinks" />
-        </set>
-        <set name="tblDrivers" table="tbl_driver" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="i_plant_id" precision="32" scale="0" not-null="true" />
-            </key>
-            <one-to-many class="hibernate.pojo.TblDriver" />
+            <one-to-many class="hibernate.pojo.TblLivePath" />
         </set>
         <set name="tblEposes" table="tbl_epos" inverse="true" lazy="true" fetch="select">
             <key>
@@ -44,6 +38,24 @@
             </key>
             <one-to-many class="hibernate.pojo.TblExceptions" />
         </set>
+        <set name="tblUserses" table="tbl_users" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="i_plant_id" precision="32" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.pojo.TblUsers" />
+        </set>
+        <set name="tblLinkses" table="tbl_links" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="i_plant_id" precision="32" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.pojo.TblLinks" />
+        </set>
+        <set name="tblDrivers" table="tbl_driver" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="i_plant_id" precision="32" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="hibernate.pojo.TblDriver" />
+        </set>
         <set name="tblDos" table="tbl_do" inverse="true" lazy="true" fetch="select">
             <key>
                 <column name="i_plant_id" precision="32" scale="0" not-null="true" />
@@ -61,12 +73,6 @@
                 <column name="i_plant_id" precision="32" scale="0" not-null="true" />
             </key>
             <one-to-many class="hibernate.pojo.TblMapping" />
-        </set>
-        <set name="tblUserses" table="tbl_users" inverse="true" lazy="true" fetch="select">
-            <key>
-                <column name="i_plant_id" precision="32" scale="0" not-null="true" />
-            </key>
-            <one-to-many class="hibernate.pojo.TblUsers" />
         </set>
         <set name="tblCards" table="tbl_card" inverse="true" lazy="true" fetch="select">
             <key>

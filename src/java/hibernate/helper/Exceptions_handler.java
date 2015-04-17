@@ -5,7 +5,7 @@
  */
 package hibernate.helper;
 
-import com.sun.org.apache.bcel.internal.generic.AALOAD;
+//import com.sun.org.apache.bcel.internal.generic.AALOAD;
 import hibernate.pojo.TblMapping;
 import hibernate.helper.Mapping_handler;
 import hibernate.helper.Epos_handler;
